@@ -1,0 +1,152 @@
+O*NET-SOC Code,Title,Alternate Title,Short Title,Source(s)
+11-9041.00,Architectural and Engineering Managers,Architect Manager,,9
+11-9041.00,Architectural and Engineering Managers,Architectural Project Manager,,10
+11-9041.00,Architectural and Engineering Managers,Civil Engineering Manager,,2
+11-9041.00,Architectural and Engineering Managers,Civil Project Manager (Civil PM),Civil PM,10
+11-9041.00,Architectural and Engineering Managers,Data Engineering Director,,10
+11-9041.00,Architectural and Engineering Managers,Data Engineering Manager,,10
+11-9041.00,Architectural and Engineering Managers,Electrical Engineering Director,,"02,04"
+11-9041.00,Architectural and Engineering Managers,Electrical Engineering Manager,,2
+11-9041.00,Architectural and Engineering Managers,Electrical Project Manager (Electrical PM),Electrical PM,10
+11-9041.00,Architectural and Engineering Managers,Electronics Engineering Manager,,8
+11-9041.00,Architectural and Engineering Managers,Engineering Design Manager,,"02,04"
+11-9041.00,Architectural and Engineering Managers,Engineering Director,,"02,09,10"
+11-9041.00,Architectural and Engineering Managers,Engineering Group Manager,,2
+11-9041.00,Architectural and Engineering Managers,Engineering Program Manager,,2
+11-9041.00,Architectural and Engineering Managers,Engineering Project Manager,,"02,10"
+11-9041.00,Architectural and Engineering Managers,Engineering Research Manager,,4
+11-9041.00,Architectural and Engineering Managers,Engineering Supervisor,,"02,10"
+11-9041.00,Architectural and Engineering Managers,Environmental Engineering Manager,,8
+11-9041.00,Architectural and Engineering Managers,Global Engineering Manager,,"02,04"
+11-9041.00,Architectural and Engineering Managers,Mechanical Engineering Director,,"02,04"
+11-9041.00,Architectural and Engineering Managers,Mechanical Engineering Manager,,2
+11-9041.00,Architectural and Engineering Managers,Process Engineering Manager,,"02,04"
+11-9041.00,Architectural and Engineering Managers,Product Development Director,,2
+11-9041.00,Architectural and Engineering Managers,Project Coordinator,,8
+11-9041.00,Architectural and Engineering Managers,Project Engineering Manager,,2
+11-9041.00,Architectural and Engineering Managers,Project Manager,,2
+11-9041.00,Architectural and Engineering Managers,Prototype Engineer Manager,,8
+11-9041.00,Architectural and Engineering Managers,Research and Development Manager (R&D Manager),R&D Manager,2
+11-9041.00,Architectural and Engineering Managers,Research Development Manager,,9
+11-9041.00,Architectural and Engineering Managers,Research Manager,,"04,06"
+11-9041.00,Architectural and Engineering Managers,Transmitter Engineer-in-Charge,,8
+13-1081.01,Logistics Engineers,Acquisition Logistics Engineer,,2
+13-1081.01,Logistics Engineers,Aero Logistics Engineer,,10
+13-1081.01,Logistics Engineers,Auto Logistics Engineer,,10
+13-1081.01,Logistics Engineers,Continuous Improvement Specialist,,10
+13-1081.01,Logistics Engineers,Cost Engineer,,10
+13-1081.01,Logistics Engineers,Cost Estimating Engineer,,10
+13-1081.01,Logistics Engineers,Cost Reduction Engineer,,10
+13-1081.01,Logistics Engineers,Logistics Engineer,,"02,08,10"
+13-1081.01,Logistics Engineers,Logistics Planning Engineer,,8
+13-1081.01,Logistics Engineers,Logistics Research Engineer,,8
+13-1081.01,Logistics Engineers,Logistics System Engineer,,8
+13-1081.01,Logistics Engineers,Procurement Engineer,,10
+13-1081.01,Logistics Engineers,Reliability Engineer,,2
+13-1081.01,Logistics Engineers,Supportability Engineer,,2
+13-1081.01,Logistics Engineers,Systems Engineer,,2
+15-1241.01,Telecommunications Engineering Specialists,Communications Analyst,,10
+15-1241.01,Telecommunications Engineering Specialists,Communications Engineer,,"02,10"
+15-1241.01,Telecommunications Engineering Specialists,Communications Network Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,Communications Systems Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,Engineer,,2
+15-1241.01,Telecommunications Engineering Specialists,Infrastructure Engineer,,2
+15-1241.01,Telecommunications Engineering Specialists,Messaging Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,Multimedia Telecommunications Systems Integrator,,8
+15-1241.01,Telecommunications Engineering Specialists,Network Engineer,,"02,10"
+15-1241.01,Telecommunications Engineering Specialists,Registered Communications Distribution Designer (RCDD),RCDD,2
+15-1241.01,Telecommunications Engineering Specialists,Telecommunication Design Analyst (Telecom Design Analyst),Telecom Design Analyst,2
+15-1241.01,Telecommunications Engineering Specialists,Telecommunication Design Engineer (Telecom Design Engineer),Telecom Design Engineer,2
+15-1241.01,Telecommunications Engineering Specialists,Telecommunication Engineer (Telecom Engineer),Telecom Engineer,"02,08"
+15-1241.01,Telecommunications Engineering Specialists,Telecommunication Systems Designer (Telecom Systems Designer),Telecom Systems Designer,2
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Administrator (Telecommunications Admin),Telecommunications Admin,10
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Analyst (Telecom Analyst),Telecom Analyst,10
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Consultant (Telecom Consultant),Telecom Consultant,2
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Engineer (Telecom Engineer),Telecom Engineer,"08,10"
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Management Specialist (Telecom Management Specialist),Telecom Management Specialist,8
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Network Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Network Technician,,1
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Operator (Telecom Operator),Telecom Operator,10
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Specialist (Telecom Specialist),Telecom Specialist,"08,10"
+15-1241.01,Telecommunications Engineering Specialists,Telecommunications Systems Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,Unified Communications Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,Voice Engineer,,10
+15-1241.01,Telecommunications Engineering Specialists,VOIP Engineer (Voice Over Internal Protocol Engineer),VOIP Engineer,10
+15-1241.01,Telecommunications Engineering Specialists,VoIP Engineer (Voice Over Internet Protocol Engineer),VoIP Engineer,10
+15-1241.01,Telecommunications Engineering Specialists,VoIP Network Engineer (Voice over Internet Protocol Network Engineer),VoIP Network Engineer,1
+15-1299.02,Geographic Information Systems Technologists and Technicians,CADD GIS Technician (Computer-Aided Design and Drafting Geographic Information Systems Technician),CADD GIS Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Cartographic Technician,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Conversion Specialist,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Field GIS Technician (Field Geographic Information Systems Technician),Field GIS Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information System Analyst (GIS Analyst),GIS Analyst,2
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Administrator (GIS Administrator),GIS Administrator,2
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Analyst (GIS Analyst),GIS Analyst,2
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Application Specialist (GIS Application Specialist),GIS Application Specialist,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Coordinator (GIS Coordinator),GIS Coordinator,2
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Data Administrator (GIS Data Administrator),GIS Data Administrator,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Data Specialist (GIS Data Specialist),GIS Data Specialist,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Database Administrator (GIS Database Administrator),GIS Database Administrator,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Developer (GIS Developer),GIS Developer,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Geographer (GIS Geographer),GIS Geographer,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Mapping Technician (GIS Mapping Technician),GIS Mapping Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographic Information Systems Technologist (GIS Technologist),GIS Technologist,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographical Information System Specialist (GIS Specialist),GIS Specialist,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geographical Information System Technician (GIS Technician),GIS Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geospatial Analyst,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geospatial Engineer,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geospatial Information Technologist,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geospatial Specialist,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geospatial Technician,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Geospatial Technologist,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,GIS Consultant (Geographic Information Systems Consultant),GIS Consultant,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,GIS Specialist (Geographic Information Systems Specialist),GIS Specialist,"02,08"
+15-1299.02,Geographic Information Systems Technologists and Technicians,GIS Technician (Geographic Information Systems Technician),GIS Technician,"02,08,10"
+15-1299.02,Geographic Information Systems Technologists and Technicians,Global Position System Technician (GPS Technician),GPS Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Global Positioning System Field Technician (GPS Field Technician),GPS Field Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Global Positioning Systems Analyst Technician (GPS Analyst Technician),GPS Analyst Technician,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Imagery Analyst,,8
+15-1299.02,Geographic Information Systems Technologists and Technicians,Resource Analyst,,2
+15-1299.05,Information Security Engineers,AI Security Specialist (Artificial Intelligence Security Specialist),AI Security Specialist,1
+15-1299.05,Information Security Engineers,Application Security Administrator,,1
+15-1299.05,Information Security Engineers,Applications Engineer,,8
+15-1299.05,Information Security Engineers,Automotive Security Engineer,,1
+15-1299.05,Information Security Engineers,Blue Team Member,,1
+15-1299.05,Information Security Engineers,Cloud Engineer,,1
+15-1299.05,Information Security Engineers,Cloud Security Architect,,1
+15-1299.05,Information Security Engineers,Cloud Security Engineer,,10
+15-1299.05,Information Security Engineers,Communications Security Manager (COMSEC Manager),COMSEC Manager,1
+15-1299.05,Information Security Engineers,Cyber Defense Incident Responder,,"03,08"
+15-1299.05,Information Security Engineers,Cyber Defense Infrastructure Support Specialist,,3
+15-1299.05,Information Security Engineers,Cyber Security Engineer,,8
+15-1299.05,Information Security Engineers,Cyber Security Threat Engineer,,8
+15-1299.05,Information Security Engineers,Cybersecurity Architect,,10
+15-1299.05,Information Security Engineers,Cybersecurity Engineer,,1
+15-1299.05,Information Security Engineers,Cybersecurity Hardware Engineer,,1
+15-1299.05,Information Security Engineers,Cybersecurity Software Developer,,1
+15-1299.05,Information Security Engineers,Cybersecurity Software Engineer,,1
+15-1299.05,Information Security Engineers,Cybersecurity Systems Engineer,,10
+15-1299.05,Information Security Engineers,Information Architect,,8
+15-1299.05,Information Security Engineers,Information Assurance Engineer,,8
+15-1299.05,Information Security Engineers,Information Security Administrator,,8
+15-1299.05,Information Security Engineers,Information Security Architect,,8
+15-1299.05,Information Security Engineers,Information Security Consultant,,8
+15-1299.05,Information Security Engineers,Information Security Engineer,,8
+15-1299.05,Information Security Engineers,Information Security Loss Prevention Engineer,,8
+15-1299.05,Information Security Engineers,Information Security Management Engineer,,8
+15-1299.05,Information Security Engineers,Information Systems Security Developer,,1
+15-1299.05,Information Security Engineers,Information Systems Security Engineer,,8
+15-1299.05,Information Security Engineers,Information Systems Security Scientist,,8
+15-1299.05,Information Security Engineers,IT Administrator (Information Technology Administrator),IT Administrator,8
+15-1299.05,Information Security Engineers,IT Architect (Information Technology Architect),IT Architect,8
+15-1299.05,Information Security Engineers,IT Security Engineer (Information Technology Security Engineer),IT Security Engineer,10
+15-1299.05,Information Security Engineers,Mobile Security Engineer,,1
+15-1299.05,Information Security Engineers,Network Engineer,,8
+15-1299.05,Information Security Engineers,Network Security Engineer,,8
+15-1299.05,Information Security Engineers,Red Team Member,,1
+15-1299.05,Information Security Engineers,Security Administrator,,1
+15-1299.05,Information Security Engineers,Security Architect,,10
+15-1299.05,Information Security Engineers,Security Engineer,,8
+15-1299.05,Information Security Engineers,Security Operations Center Manager (SOC Manager),SOC Manager,1
+15-1299.05,Information Security Engineers,System Security Analyst,,3
+15-1299.05,Information Security Engineers,Systems Engineer,,8
+15-1299.05,Information Security Engineers,Systems Security Engineer,,8
