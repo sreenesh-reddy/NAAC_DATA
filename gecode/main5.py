@@ -14,6 +14,14 @@ loop=False
 # Setup Selenium WebDriver
 driver = webdriver.Chrome()
 
+def find_closest_match_fuzzy(target, options,threshold):
+    matches= process.extract(target, options,scorer=fuzz.partial_ratio)
+    for match, score, _ in matches:
+        print(f"Match: {match}, Score: {score}")
+
+    return [(match, score) for match, score, _ in matches if score >= threshold]
+
+
 def extract_college_name_from_url(url):
     """
     Extracts the college name from a Google Maps URL.
@@ -25,27 +33,27 @@ def extract_college_name_from_url(url):
         return college_name
     return "Unknown College"
 
-def get_college_names(college_name):
+def get_college_names(college_name,flag):
     """
     Searches for a college on Google Maps and extracts the college names from the results.
     """
     # Open Google Maps
-    driver.get("https://www.google.com/maps")
     
     # Search for the college
     search_box = driver.find_element(By.NAME, "q")
+    search_box.clear()
+
     search_box.send_keys(college_name)
     search_box.send_keys(Keys.RETURN)
-    global loop
     time.sleep(4)  # Wait for results to load
 
     # Check if multiple results appear
     try:
-        print('='*5)
+        #print('='*5)
         college_names = []
         current_url = driver.current_url
         if "place" in current_url:
-            print("Single result (directly opened)")
+            #print("Single result (directly opened)")
             try:
                 zoom_in_button = WebDriverWait(driver, 5).until(
                     EC.presence_of_element_located((By.ID, "widget-zoom-in"))
@@ -62,9 +70,7 @@ def get_college_names(college_name):
 
             # Get map container
             map_container = driver.find_element(By.CLASS_NAME, "widget-scene-canvas")
-            size = map_container.size
-            width = size["width"]
-            height = size["height"]
+ 
 
             # Calculate center point
             center_x = 150
@@ -81,15 +87,16 @@ def get_college_names(college_name):
                 )
                 coordinates_text = coordinates_element.text.strip()
                 coordinates_list.append(coordinates_text)
-                print('SINGLE RESULT COLLEGE COORDINATES:',college_name,coordinates_text)
+                #print('SINGLE RESULT COLLEGE COORDINATES:',college_name,coordinates_text)
                 return
             except Exception as e:
+                coordinates_list.append('')
                 print(f"Failed to extract coordinates for {college_name}: {e}")
                 return
         else:
-            flag=1
+            #print('Multiple rsults found:',college_name, flag)
             results = driver.find_elements(By.CLASS_NAME, "Nv2PK")
-            if(loop==False):
+            if(flag==0):
                 for result in results:                
                     result.click()
                     time.sleep(1)
@@ -98,7 +105,54 @@ def get_college_names(college_name):
                     if extracted_name and extracted_name not in college_names:
                         college_names.append(extracted_name)
             else:
-                coordinates_list.append('')
+                results[0].click()
+                time.sleep(1)
+                try:
+                    zoom_in_button = WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located((By.ID, "widget-zoom-in"))
+                    )
+
+                    for _ in range(4):
+                        # Wait until zoom button is enabled
+                        WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.ID, "widget-zoom-in")))
+                        zoom_in_button.click()
+                    time.sleep(1)  # Pause after each click to let map adjust
+
+                except Exception as e:
+                    print(f"Zoom-in button issue for {college_name}: {e}")
+
+                time.sleep(1)
+                results[1].click()
+                time.sleep(1)
+                results[0].click()
+                time.sleep(1)
+
+                map_container = driver.find_element(By.CLASS_NAME, "widget-scene-canvas")
+
+                center_x = 500
+                center_y = 0
+
+                # Right-click at center
+                actions = ActionChains(driver)
+                actions.move_to_element_with_offset(map_container, center_x, center_y).context_click().perform()
+                
+                try:
+                    # Wait for coordinates to appear
+                    coordinates_element = WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located((By.CLASS_NAME, "mLuXec"))  # Class for coordinates in right-click menu
+                    )
+                    coordinates_text = coordinates_element.text.strip()
+                    coordinates_list.append(coordinates_text)
+                    #print('SINGLE RESULT COLLEGE COORDINATES:',college_name,coordinates_text)
+                    return
+                except Exception as e:
+                    coordinates_list.append('')
+                    print(f"Failed to extract coordinates for {college_name}: {e}")
+                    return
+
+
+
+
 
         print("\n".join(college_names))  # Print extracted names
         return college_names
@@ -107,30 +161,20 @@ def get_college_names(college_name):
         print(traceback.format_exc())  # This will print the full traceback
 
     return
+from rapidfuzz import process,fuzz
 
 # Example usage
 def test(target,district):
-    temp=get_college_names(target+' , '+district)
+    temp=get_college_names(target+' in '+district,0)
     # Close the driver
-    from rapidfuzz import process,fuzz
     
 
     if(temp):
-        target = target.strip().upper()
-        d={}
-        for x in temp:
-            d[x.strip().upper()]=x
-        temp = [opt.strip().upper() for opt in temp]
-        def find_closest_match_fuzzy(target, options,threshold):
-            matches= process.extract(target, options,scorer=fuzz.token_set_ratio)
-            for match, score, _ in matches:
-                print(f"Match: {match}, Score: {score}")
-
-            return [(match, score) for match, score, _ in matches if score >= threshold]
-
+        
         # Example usage
         best_matches = find_closest_match_fuzzy(target, temp,30)
 
+        #print('BEST MATCHES FOUND FOR MULTIPLE RESULT:',best_matches)
 
         best_matches.sort(key=lambda x: x[1], reverse=True)
 
@@ -139,37 +183,37 @@ def test(target,district):
         top_match = best_matches[0] if best_matches else []
 
         if top_match:
-            final=[]
-            # Check if there's a second match within the score difference threshold
-            if len(best_matches) > 1 and abs(top_match[1] - best_matches[1][1]) <= 1.5:
-                final=[d[top_match[0]], d[best_matches[0]]] # Return both
-            else:
-                final=[d[top_match[0]]]  # Return only the top match
-
-
-            
-            temp=[]
-            global loop
-            for x in final:
-                loop=True
-                get_college_names(x)
-                loop=False
+            # final=[]
+            # # Check if there's a second match within the score difference threshold
+            # if len(best_matches) > 1 and abs(top_match[1] - best_matches[1][1]) <= 1.5:
+            #     final=[top_match[0], best_matches[1][0]] # Return both
+            # else:
+            #     final=[top_match[0]]  # Return only the top match
+            #print('final:',final)
+            # for x in final:
+            #     get_college_names(x+' in '+district,1)
+            get_college_names(top_match[0]+' in '+district,1)
         else:
-            print('no matches found')
+            print('no matches found in best similarity')
     else:
-        print('no results found')
+        pass
+        #print('temp found to be empty')
 
 
 
 import pandas as pd 
 
 coordinates_list = []
-df = pd.read_csv("test.csv") 
+df = pd.read_csv("data2_files/part_6.csv") 
+driver.get("https://www.google.com/maps")
+
 for index, row in df.iterrows():
+
     college_name = row["Name"]
     district = row["District"]
+
     test(college_name,district)
-# test('MAGUNTA SUBBARAMA REDDY DEGREE COLLEGE KONDAPI','Prakasam')
+#test('Zoological Survey of India','Nicobars')
 print(coordinates_list)
 df["lat,long"] = coordinates_list
 driver.quit()
