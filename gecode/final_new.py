@@ -8,10 +8,35 @@ import traceback
 from rapidfuzz import process,fuzz
 import time
 import re
+from selenium.webdriver.chrome.options import Options
 import pandas as pd
+
+import re
+
+def extract_coordinates_from_url(url):
+    # Regular expression to match the coordinates after the '@' symbol
+    match = re.search(r'@(-?\d+\.\d+),(-?\d+\.\d+)', url)
+    if match:
+        latitude = match.group(1)
+        longitude = match.group(2)
+        longitude = float(longitude) + 0.0002
+        longitude = round(longitude, 7)  # Adjust the number of decimal places as needed
+        return latitude, str(longitude)
+        return latitude, longitude
+    else:
+        return None,None
+
 flag=0
 loop=False
-driver = webdriver.Chrome()
+options = Options()
+options.add_argument("--headless")  # Ensure headless mode is enabled
+options.add_argument("--window-size=1920,1080")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+
+driver = webdriver.Chrome(options=options)
+
 
 
 def find_closest_match_fuzzy(target, options,threshold):
@@ -36,57 +61,64 @@ def extract_college_name_from_url(url):
         return college_name
     return "Unknown College"
 
+def restart_driver():
+    """Restart the WebDriver instance to prevent multiple connection issues."""
+    global driver
+    try:
+        driver.quit()
+    except Exception as e:
+        print("Error while quitting the driver:", e)
+    
+    driver = webdriver.Chrome()
+    driver.get("https://www.google.com/maps")
+    time.sleep(3)  # Give it time to load
+
 
 def place(college_name):
     try:
         close_feedback_popup()  # Close popup if present before clicking
-        zoom_in_button = WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.ID, "widget-zoom-in"))
-        )
+
+        # Directly find the zoom-in button
+        zoom_in_button = driver.find_element(By.ID, "widget-zoom-in")
 
         for _ in range(4):
-            # Wait until zoom button is enabled
-            WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.ID, "widget-zoom-in")))
+            # Ensure the button is clickable by adding a short sleep
+            time.sleep(0.5)
             zoom_in_button.click()
         time.sleep(1)  # Pause after each click to let map adjust
+        print('zoom worked')
 
     except Exception as e:
         print(f"Zoom-in button issue for {college_name}: {e}")
 
-    # Get map container
-    map_container = driver.find_element(By.CLASS_NAME, "widget-scene-canvas")
-
-
-    # Calculate center point
-    center_x = 150
-    center_y = 0
-
-    # Right-click at center
-    actions = ActionChains(driver)
-    actions.move_to_element_with_offset(map_container, center_x, center_y).context_click().perform()
+    
     
     try:
-        # Wait for coordinates to appear
-        coordinates_element = WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "mLuXec"))  # Class for coordinates in right-click menu
-        )
-        coordinates_text = coordinates_element.text.strip()
-        coordinates_list.append(coordinates_text)
-        print('SINGLE RESULT COLLEGE COORDINATES:',college_name,coordinates_text)
+        # Directly find the coordinates element
+        # time.sleep(2)  # Wait for the coordinates to appear
+        # coordinates_element = driver.find_element(By.CLASS_NAME, "mLuXec")
+        # coordinates_text = coordinates_element.text.strip()
+        # coordinates_list.append(coordinates_text)
+        # print('SINGLE RESULT COLLEGE COORDINATES:', college_name, coordinates_text)
+        current_url = driver.current_url
+        lat,long=extract_coordinates_from_url(current_url)
+        coordinates_list.append(f"{lat},{long}")
+        print('SINGLE RESULT COLLEGE COORDINATES:', college_name, ':',lat,long)
+
         return
     except Exception as e:
-        coordinates_list.append('')
         print(f"Failed to extract coordinates for {college_name}: {e}")
-        print(traceback.format_exc()) 
-        driver.quit()
-        driver.get("https://www.google.com/maps")
-        get_college_names(college_name,0)
+        print(traceback.format_exc())
+        restart_driver()  # Restart the driver properly
+        get_college_names(college_name, 0)
         return
 
 
-def multiple_places(results,college_names,college_name,flag):
-    if(flag==0):
-        for result in results:                
+
+def multiple_places(results, college_names, college_name, flag):
+    if flag == 0:
+        for result in results:
+            time.sleep(4)
             result.click()
             time.sleep(1)
             current_url = driver.current_url
@@ -94,18 +126,19 @@ def multiple_places(results,college_names,college_name,flag):
             if extracted_name and extracted_name not in college_names:
                 college_names.append(extracted_name)
     else:
+        time.sleep(1)
         results[0].click()
         time.sleep(1)
         try:
-            zoom_in_button = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.ID, "widget-zoom-in"))
-            )
+            # Directly find the zoom-in button
+            zoom_in_button = driver.find_element(By.ID, "widget-zoom-in")
 
             for _ in range(4):
-                # Wait until zoom button is enabled
-                WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.ID, "widget-zoom-in")))
+                # Ensure the button is clickable by adding a short sleep
+                time.sleep(0.5)
                 zoom_in_button.click()
             time.sleep(1)  # Pause after each click to let map adjust
+            print('zoom worked')
 
         except Exception as e:
             print(f"Zoom-in button issue for {college_name}: {e}")
@@ -116,37 +149,26 @@ def multiple_places(results,college_names,college_name,flag):
         results[0].click()
         time.sleep(1)
 
-        map_container = driver.find_element(By.CLASS_NAME, "widget-scene-canvas")
-
-        center_x = 500
-        center_y = 0
-
-        # Right-click at center
-        actions = ActionChains(driver)
-        actions.move_to_element_with_offset(map_container, center_x, center_y).context_click().perform()
         
         try:
-            # Wait for coordinates to appear
-            coordinates_element = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "mLuXec"))  # Class for coordinates in right-click menu
-            )
-            coordinates_text = coordinates_element.text.strip()
-            coordinates_list.append(coordinates_text)
-            #print('SINGLE RESULT COLLEGE COORDINATES:',college_name,coordinates_text)
+            current_url = driver.current_url
+            lat,long=extract_coordinates_from_url(current_url)
+            coordinates_list.append(f"{lat},{long}")
+            print('SINGLE RESULT COLLEGE COORDINATES:', college_name, ':',lat,long)
             return
         except Exception as e:
-            coordinates_list.append('')
             print(f"Failed to extract coordinates for {college_name}: {e}")
-            print(traceback.format_exc()) 
-            driver.quit()
-            driver.get("https://www.google.com/maps")
-            get_college_names(college_name,0)
+            print(traceback.format_exc())
+            restart_driver()  # Restart the driver properly
+            get_college_names(college_name, 0)
             return
 
 
 def get_college_names(college_name,flag):
     # Search for the college
-    search_box = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'searchboxinput')))
+    # search_box = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'searchboxinput')))
+    time.sleep(2)
+    search_box =driver.find_element(By.CLASS_NAME, 'searchboxinput')
     search_box.clear()
     search_box.send_keys(college_name)
     search_box.send_keys(Keys.RETURN)
@@ -217,8 +239,8 @@ coordinates_list = []
 driver.get("https://www.google.com/maps")
 
 def main():
-    path="part1_part4_data_files/part_"
-    for x in range(7,11):
+    path="part1_part5_data_files/part_"
+    for x in range(1,6):
         global coordinates_list
         coordinates_list = []
         df = pd.read_csv(path+str(x)+".csv") 
@@ -239,7 +261,7 @@ def main():
         print('data saved sucessfully')
 
 
-# test('Saraswathi College of Arts & Science, Dachepalli','Guntur')
+#test('sree chaitanya degree college kavali','Sri Potti Sriramulu Nellore','Andhra Pradesh')
 main()
 print(coordinates_list)
 driver.quit()
